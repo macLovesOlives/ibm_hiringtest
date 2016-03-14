@@ -1,0 +1,39 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f5f8fa;
+}
+
+h3 {
+  font-family: 'sans-serif';
+  color: #55ACEE;
+  font-size: 500%;
+  text-align: center;
+}
+
+form{
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+h1 {
+  text-align: center;
+}
+
+a:link{
+  color: #55ACEE;
+  text-decoration: none;
+}
+
+a:hover{
+  colour: #8F00EE;
+  text-decoration: none;
+}
+a.active{
+  color: #8F00EE;
+}
+a:visited{
+  color: #55ACEE;
+}

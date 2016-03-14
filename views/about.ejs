@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/style.css"/>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<% include templates/header.ejs %>
+
+    <h3>What in the World Would </br> Twitter Say?</h3>
+
+    <div>
+        <form action="http://localhost:3000/about"  method="post" >
+            <input type="text"
+                   class="search"
+                   title="search"
+                   value="Search"
+                   onblur="if (!value)value='Search'"
+                   onclick="value=''"
+                   name="search_bar">
+            <input  type="text"
+                    value="#"
+                    onblur="if (!value)value='number'"
+                    onclick="value=''"
+                    name="number_bar"
+                    title="#"
+                    size="2">
+                <select class="selectpicker" data-style="btn-info" name="resultType">
+                    <optgroup label="Select Table">
+                        <option name="" value="">Select table</option>
+                        <option name="popular" value="Popular">Popular</option>
+                        <option name="recent" value="Recent">Recent</option>
+                        <option name="mixed" value="Mixed">Mixed</option>
+                    </optgroup>
+                </select>
+            <input type="submit"
+                   value="?" >
+        </form>
+    </div>
+    <p>Enter your search term, the number of tweets you want to get, and what type of tweet to get.</p>
+
+<a class="twitter-timeline"
+   href=<%= search %>;
+   data-widget-id="708694752495937921">
+   click here to see more on Twitter
+</a>
+
+</body>
+</html>
