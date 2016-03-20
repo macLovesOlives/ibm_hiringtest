@@ -6,13 +6,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
+<link rel="shortcut icon" type="image/x-icon" href ="../public/images/favicon.ico"/>
 
 <% include templates/header.ejs %>
 
     <h3>What in the World Would </br> Twitter Say?</h3>
 
     <div>
-        <form action="http://localhost:3000/about"  method="post" >
+        <form action="/about"  method="post" >
             <input type="text"
                    class="search"
                    title="search"
@@ -46,6 +47,18 @@
    data-widget-id="708694752495937921">
    click here to see more on Twitter
 </a>
+
+<div class="scrollable" style="color: #0f4410">
+    <% twitter.statuses.forEach(function(twit){ %>
+<p>
+    Tweet:    <%= twit.text%><br>
+    RT:    <%= twit.retweet_count%>&nbsp;&nbsp;&nbsp;&nbsp;
+    <3:    <%= twit.favorite_count%><br>
+    How does twitter feel about this? <%= twit.smiley%>
+    <br>
+</p>
+    <% }); %>
+</div>
 
 </body>
 </html>

@@ -7,7 +7,10 @@ var twitter = require('twitter');
 router.get('/', function(req, res, next) {
     res.render('about', {
         title: 'Twitter Talk',
-        search: 'https://twitter.com/search?q='+ req.body.search_bar
+        search: 'https://twitter.com/search?q='+ req.body.search_bar,
+        twitter: {"statuses":[
+            {"text": ""}
+        ]}
     });
 });
 

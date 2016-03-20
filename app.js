@@ -5,27 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var twitter = require('twitter');
-//var jquery = require ('jquery')
 var routes = require('./routes/index');
 var about = require('./routes/about');
-//var twitter = require('./twitterCom');
+var sentiment = require('sentiment');
+
 
 var app = express();
-
-app.locals.points = "100"; //variable that is local to my app (aka a global var)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use('/', routes);
 app.use('/about', about);
@@ -37,59 +34,66 @@ var client = new twitter({
   access_token_secret: 'VU7CMVjY4cTcIY7BD4d2sV6EFr8xTebmxgHBFabA0Ji99'
 });
 
-//getInput = function (search, num) {
-//  client.get('search/tweets', {q: search, count: num}, function(error, tweets, response){
-//    console.log("tweets " + tweets);
-//    for (var i = 0 ; i < num ; i ++) {
-//      console.log("***************************");
-//      console.log(tweets.statuses[i].text);
-//      //console.log(response);
-//      about.test = tweets.statuses[i].text;
-//      console.log("GETINPUT test: " + about.test);
-//      return about.test;
-//    }
-//    console.log("***************************");
-//  });
-//};
+function smileyAnalysis(sentiment){
+  var score = sentiment.score;
+
+  if (score === 0)  {return ':-|'}
+  if (score  <  0) {
+    if (score > -2) {
+      return ':-('
+    }
+    return ':`-('
+  }
+  if(score < 2) {return ':-)'}
+  return ':-D'
+}
+
+
 
 app.use('/about',function(req,res,next){
   var search = req.body.search_bar;
   req.search = search;
   var num = req.body.number_bar;
   var resultType = req.body.resultType;
-  //var num    = req.body.number_bar;
-  //about.getInput(search, 1);
 
-
-  client.get('search/tweets', {q: search, count: num, result_type: resultType}, function(error, tweets, response){
+  req.tweet = client.get('search/tweets', {q: search, count: num, result_type: resultType}, function(error, tweets, response){
     //console.log(tweets);
     console.log("\n\n\n\n");
-
     for (var i = 0 ; i < num ; i ++) {
-      console.log("***************************");
-      console.log("Tweet: "+tweets.statuses[i].text);
-      //console.log(tweets.statuses[i].source);
-      console.log("\nsource: "+ tweets.statuses[i].source);
-      console.log("\nHow many times was it retweeted?  "+tweets.statuses[i].retweet_count);
-      console.log("How many times was it favourited? "+tweets.statuses[i].favorite_count);
+      try {
+        var results = sentiment(tweets.statuses[i].text);
+
+        console.log("\n***************************\n");
+        tweets.statuses[i].smiley = smileyAnalysis(results);
+        console.log(smileyAnalysis(results), '-', tweets.statuses[i].text.replace(/\n/g, ' '));
+        console.log("\nHow many times was it retweeted?  " + tweets.statuses[i].retweet_count);
+        console.log("How many times was it favourited? " + tweets.statuses[i].favorite_count);
+      }catch(err){
+        console.log("shoot. error: " + err);
+      }
     }
-    console.log("***************************");
+    console.log("\n***************************");
     console.log("\n\n\n");
-    return req.test;
+    var tweetResponse = tweets;
+    //console.log("~~~~~~~ ", tweetResponse);
+    res.render('about',{
+      title: 'Twitter Talk',
+      search: 'https://twitter.com/search?q='+ req.search,
+      twitter : tweetResponse
+    });
   });
-
-  next()
+  //next()
 });
 
-app.post('/about', function (req,res,next) {
-  console.log("........");
-  res.render('about',{
-    title: 'twitSearch',
-    search: 'https://twitter.com/search?q='+ req.search,
-    test : about.test
-  });
-  //res.end();
-});
+//app.post('/about', function (req,res,next) {
+//  console.log("........");
+//  res.render('about',{
+//    title: 'asdfghjk',
+//    search: 'https://twitter.com/search?q='+ req.search,
+//    twitter : req.tweet
+//  });
+//  //res.end();
+//});
 
 
 // catch 404 and forward to error handler
