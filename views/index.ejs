@@ -9,30 +9,32 @@
     <% include templates/header.ejs %>
 
     <h3>Welcome To Twitter Talk!</h3>
-    <p>Ready to get started?
+    <h6 style="text-align: center">Ready to get started?
       Click <a href="/about">Twitter Talk</a> at the top of this page to go to the Twitter Talk Search.
-    </p>
+      Simply enter you search term, number of results you want and what type of results you want.
+    </h6>
 
   <h5 style="text-align: center">
-    <table>
+    <table style=" font-size: 250%">
+      <h1>Twitter's Emotions</h1>
       <tr>
-        <td>:`-(</td>
+        <td><%= emoji.emojify(":cry:")%></td>
         <td>Very Sad</td>
       </tr>
       <tr>
-        <td>:-(</td>
+        <td><%= emoji.emojify(":slightly_frowning_face:")%></td>
         <td>Sad</td>
       </tr>
       <tr>
-        <td>:-|</td>
+        <td><%= emoji.emojify(":neutral_face:")%></td>
         <td>Neutral</td>
       </tr>
       <tr>
-        <td>:-)</td>
+        <td><%= emoji.emojify(":slightly_smiling_face:")%></td>
         <td>Happy</td>
       </tr>
       <tr>
-        <td>:-)</td>
+        <td><%= emoji.emojify(":joy:")%></td>
         <td>Very Happy</td>
       </tr>
     </table>
