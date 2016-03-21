@@ -9,8 +9,10 @@ router.get('/', function(req, res, next) {
         title: 'Twitter Talk',
         search: 'https://twitter.com/search?q='+ req.body.search_bar,
         twitter: {"statuses":[
-            {"text": ""}
-        ]}
+            {"text": "Example...",
+            "smiley":":baby_chick:"}
+        ]},
+        emoji: require('node-emoji')
     });
 });
 
