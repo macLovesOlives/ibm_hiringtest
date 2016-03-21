@@ -8,7 +8,7 @@ var twitter = require('twitter');
 var routes = require('./routes/index');
 var about = require('./routes/about');
 var sentiment = require('sentiment');
-
+var emoji = require('node-emoji');
 
 var app = express();
 
@@ -37,15 +37,15 @@ var client = new twitter({
 function smileyAnalysis(sentiment){
   var score = sentiment.score;
 
-  if (score === 0)  {return ':-|'}
+  if (score === 0)  {return ":neutral_face:"}
   if (score  <  0) {
     if (score > -2) {
-      return ':-('
+      return ":slightly_frowning_face:"
     }
-    return ':`-('
+    return ":cry:"
   }
-  if(score < 2) {return ':-)'}
-  return ':-D'
+  if(score < 2) {return ":slightly_smiling_face:"}
+  return ":joy:"
 }
 
 
@@ -79,7 +79,8 @@ app.use('/about',function(req,res,next){
     res.render('about',{
       title: 'Twitter Talk',
       search: 'https://twitter.com/search?q='+ req.search.replace(' ','%20'),
-      twitter : tweetResponse
+      twitter : tweetResponse,
+      emoji: emoji
     });
   });
   //next()
