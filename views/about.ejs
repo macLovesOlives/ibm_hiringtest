@@ -55,7 +55,7 @@
     <b><%= twit.text%></b> <br>
     ReTweeted?    <%= twit.retweet_count%> time(s) &nbsp;&nbsp;&nbsp;&nbsp;
     Favourited?     <%= twit.favorite_count%> time(s)
-    <p>How does twitter feel about this? <%= twit.smiley%></p>
+    <p>How does twitter feel about this? <b><%= emoji.emojify(twit.smiley)%></b></p>
     <br>
 </p>
     <% }); %>
