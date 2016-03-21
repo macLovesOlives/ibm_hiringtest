@@ -1,8 +1,8 @@
 
 twitter_talk    
 ==============
-*March 20th 2016   *
-*Mackenzie Ostler  *
+**March 20th 2016**
+**Mackenzie Ostler**
 
 
 WHAT?
