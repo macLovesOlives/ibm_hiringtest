@@ -34,6 +34,7 @@ var client = new twitter({
   access_token_secret: 'VU7CMVjY4cTcIY7BD4d2sV6EFr8xTebmxgHBFabA0Ji99'
 });
 
+//calculate sentiment and assign an emoji appropriately
 function smileyAnalysis(sentiment){
   var score = sentiment.score;
 
@@ -48,8 +49,6 @@ function smileyAnalysis(sentiment){
   return ":joy:"
 }
 
-
-
 app.use('/about',function(req,res,next){
   var search = req.body.search_bar;
   req.search = search;
@@ -62,7 +61,6 @@ app.use('/about',function(req,res,next){
   var resultType = req.body.resultType;
 
   req.tweet = client.get('search/tweets', {q: search, count: num, result_type: resultType}, function(error, tweets, response){
-    //console.log(tweets);
     console.log("\n\n\n\n");
     for (var i = 0 ; i < num ; i ++) {
       try {
@@ -80,7 +78,6 @@ app.use('/about',function(req,res,next){
     console.log("\n***************************");
     console.log("\n\n\n");
     var tweetResponse = tweets;
-    //console.log("~~~~~~~ ", tweetResponse);
     res.render('about',{
       title: 'Twitter Talk',
       search: 'https://twitter.com/search?q='+ req.search.replace(' ','%20'),
@@ -90,16 +87,6 @@ app.use('/about',function(req,res,next){
   });
   //next()
 });
-
-//app.post('/about', function (req,res,next) {
-//  console.log("........");
-//  res.render('about',{
-//    title: 'asdfghjk',
-//    search: 'https://twitter.com/search?q='+ req.search,
-//    twitter : req.tweet
-//  });
-//  //res.end();
-//});
 
 
 // catch 404 and forward to error handler
