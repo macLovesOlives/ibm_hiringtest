@@ -2,6 +2,8 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/style.css"/>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -40,7 +42,6 @@
                    value="?" >
         </form>
     </div>
-    <p>Enter your search term, the number of tweets you want to get, and what type of tweet to get.</p>
 
 <a class="twitter-timeline"
    href=<%= search %>;
@@ -48,13 +49,13 @@
    click here to see more on Twitter
 </a>
 
-<div class="scrollable" style="color: #0f4410">
+<div class="scrollable">
     <% twitter.statuses.forEach(function(twit){ %>
 <p>
-    Tweet:    <%= twit.text%><br>
-    RT:    <%= twit.retweet_count%>&nbsp;&nbsp;&nbsp;&nbsp;
-    <3:    <%= twit.favorite_count%><br>
-    How does twitter feel about this? <%= twit.smiley%>
+    <b><%= twit.text%></b> <br>
+    ReTweeted?    <%= twit.retweet_count%> time(s) &nbsp;&nbsp;&nbsp;&nbsp;
+    Favourited?     <%= twit.favorite_count%> time(s)
+    <p>How does twitter feel about this? <%= twit.smiley%></p>
     <br>
 </p>
     <% }); %>
