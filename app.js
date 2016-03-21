@@ -78,7 +78,7 @@ app.use('/about',function(req,res,next){
     //console.log("~~~~~~~ ", tweetResponse);
     res.render('about',{
       title: 'Twitter Talk',
-      search: 'https://twitter.com/search?q='+ req.search,
+      search: 'https://twitter.com/search?q='+ req.search.replace(' ','%20'),
       twitter : tweetResponse
     });
   });
