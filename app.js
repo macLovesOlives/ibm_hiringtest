@@ -53,7 +53,12 @@ function smileyAnalysis(sentiment){
 app.use('/about',function(req,res,next){
   var search = req.body.search_bar;
   req.search = search;
-  var num = req.body.number_bar;
+  var num;
+    if(req.body.number_bar == '#'){
+        num = 5;
+    }else{
+        num = req.body.number_bar;
+    }
   var resultType = req.body.resultType;
 
   req.tweet = client.get('search/tweets', {q: search, count: num, result_type: resultType}, function(error, tweets, response){
