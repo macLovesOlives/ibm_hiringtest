@@ -10,6 +10,9 @@ h3 {
   font-size: 500%;
   text-align: center;
 }
+h6{
+  font-size: medium;
+}
 
 form{
   text-align: center;
@@ -17,7 +20,7 @@ form{
 
 p {
   text-align: center;
-  color: #444444;
+  color: #000000;
 }
 h1 {
   text-align: center;
@@ -31,6 +34,7 @@ h5{
 a:link{
   color: #55ACEE;
   text-decoration: none;
+  text-align: center;
 }
 .scrollable{
   height: 250px;
@@ -45,4 +49,18 @@ a.active{
 }
 a:visited{
   color: #55ACEE;
+}
+
+p {
+  background-color: #b5e6e5;
+  colour: #444444;
+  font-family: "Arial Rounded MT Bold", sans-serif;
+  text-align: left;
+  line-height: 100%;
+  margin-bottom: 0em;
+  margin-top: 0.5em;
+}
+
+p {
+  background-color: rgba(85, 172, 238, 0.18);
 }
