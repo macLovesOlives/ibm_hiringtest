@@ -16,6 +16,6 @@ Twitter Talk is a nodejs application that when given a keyword will pull a set o
   
 Known Bugs:
 -----------
-  Some webbrowsers and operating systems do not support emoji display, although most do.  If you cannot see the emoji's it is most likely due to a lack of support from the browser, try Chrome or a mobile browser.
+  Some webbrowsers and operating systems do not support emoji display, although most do.  If you cannot see the emojis it is most likely due to a lack of support from the browser, try Chrome or a mobile browser.
   
   
